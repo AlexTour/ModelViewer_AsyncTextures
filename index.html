@@ -27,7 +27,7 @@
       const material = modelViewerTexture1.model.materials[1];
 
       const createAndApplyTexture = async (baseColorTexture, event) => {
-        const texture = await modelViewerTexture1.createTexture("texture.jpg");
+        const texture = await modelViewerTexture1.createTexture("./texture.jpg");
         if (channel.includes('base') || channel.includes('metallic')) {
           material.pbrMetallicRoughness[channel].setTexture(texture);
         } else {
