@@ -20,16 +20,21 @@
   </model-viewer>
   <script src="script.js"></script>
   <script type="module">
-    const modelViewerTexture1 = document.querySelector("#modelviewer");
+    const modelViewer = document.querySelector("#modelviewer");
 
-    modelViewerTexture1.addEventListener("load", () => {
+    modelViewer.addEventListener("load", () => {
+      
+       // Get the material with index 1
+      const material = modelViewer.model.materials[1];
+     
+      // Create a new texture object and set its URL
+      const newTexture = new THREE.TextureLoader().load("texture.jpg");
 
-      const material = modelViewerTexture1.model.materials[1];
+      // Assign the texture to the material's baseColorTexture
+      material.baseColorTexture = newTexture;
 
-      const createAndApplyTexture = async (baseColorTexture, event) => {
-        const texture = await modelViewerTexture1.createTexture("texture.jpg");
-        material[baseColorTexture].setTexture(texture);  
-      }
+      // Update the material to reflect the changes
+      material.needsUpdate = true;
     });
 
   </script>
