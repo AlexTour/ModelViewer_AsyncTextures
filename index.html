@@ -19,24 +19,28 @@
     </div>
   </model-viewer>
   <script src="script.js"></script>
+  <!-- Include the THREE.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r133/three.min.js"></script>
   <script type="module">
     const modelViewer = document.querySelector("#modelviewer");
 
-    modelViewer.addEventListener("load", () => {
-      
-       // Get the material with index 1
+    // Wait for the model to finish loading
+    modelViewer.addEventListener('load', () => {
+      // Get the material with index 1
       const material = modelViewer.model.materials[1];
-     
-      // Create a new texture object and set its URL
-      const newTexture = new THREE.TextureLoader().load("texture.jpg");
 
-      // Assign the texture to the material's baseColorTexture
-      material.baseColorTexture = newTexture;
-
+      // Load the texture using THREE.FileLoader()
+      const loader = new THREE.FileLoader();
+      loader.load('texture.jpg', function (textureData) {
+      const texture = new THREE.CanvasTexture(textureData);
+    
+      // Set the texture on the material
+      material.pbrMetallicRoughness.baseColorTexture = texture;
+      
       // Update the material to reflect the changes
       material.needsUpdate = true;
-    });
-
+      });
+  });
   </script>
   <!-- Loads <model-viewer> for browsers: -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
