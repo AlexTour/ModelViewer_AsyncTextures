@@ -35,7 +35,7 @@
       const texture = new THREE.CanvasTexture(textureData);
     
       // Set the texture on the material
-      material.pbrMetallicRoughness.baseColorTexture = texture;
+      material.normalTexture.setTexture(texture);
       
       // Update the material to reflect the changes
       material.needsUpdate = true;
