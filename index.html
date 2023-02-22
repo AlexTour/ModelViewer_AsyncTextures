@@ -25,7 +25,7 @@
     const modelViewer = document.querySelector("#modelviewer");
 
     // Wait for the model to finish loading
-    modelViewer.addEventListener('load', () => {
+    modelViewer.addEventListener('load', async () => {
       // Get the material with index 1
       const material = modelViewer.model.materials[1];
       const texture = await modelViewer.createTexture('texture.jpg');
