@@ -31,7 +31,7 @@
       const texture = await modelViewer.createTexture('texture.jpg');
 
       // Set the texture on the material
-      material.normalTexture.setTexture(texture);
+      material.baseColorTexture.setTexture(texture);
       
       // Update the material to reflect the changes
       material.needsUpdate = true;
